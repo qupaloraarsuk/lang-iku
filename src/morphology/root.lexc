@@ -1,0 +1,83 @@
+!========================================================================================!
+! This is the file that hosts the symbols and POS for the Inuktitut morphological parser !
+! Rules for phonology and orthography are kept in the rule-file xfst-iku.txt             !
+! The lexicon files are found in *-iku-lex.txt files, and the morphology ones in *-iku   !
+! -morph.txt files. The closed POS have no separate morph file.                          !
+!========================================================================================!
+
+Multichar_Symbols
++N +V +Pron +Prop !	+Part 
++Sg +Du +Pl
++1Sg +2Sg +3Sg +4Sg +1Du +2Du +3Du +4Du +1Pl +2Pl +3Pl +4Pl
++1SgO +2SgO +3SgO +4SgO +1DuO +2DuO +3DuO +4DuO +1PlO +2PlO +3PlO +4PlO !Objects' persons
++Abs +Gen +Acc +Loc +All +Abl +Trs +Sim !(-,p,mik,mi,mut,mit,kkut,titut), Dorais terms
+!+ABS +REL +TRM +LOC +ABL +MOD !cases from an earlier attempt
++Ind +Imp +Cau +ConReal +ConUnreal ! Inupiaq moods, change these. 
++Prs +Prt ! Well, tenses.
+! The mood tags are from Iñupiaq and should probably be changed
++Abbr
+
+%> !morphemeborder
+%^TRUNC !truncation dummy
+%^EBLOCK !dummy to block schwa going to a (aŋutik not *aŋuttak)
+%^C ! dummy for intermediate gemination
+%^DEFRIC !dummy when fricatives go stops (amaġuq -> amaqquk) as apposed to %C in niġi+VIK -> niġġivik
+%^SCHWADEL !dummy with derivatives truncating semi-final schwa
+!%^CLIT !dummy with clitics used in Kalaallisut. This far unused in iku
+%^V ! Unspecified vowel
+
+
+!! @P.IV.ON@ !Flag - positive inquiry for intransitive wants IV suff
+!! @P.TV.ON@ !Flag - positive inquiry for intransitive wants TV suff
+!! @R.IV.ON@ !Flag - require test for intransitivity   gets IV suff
+!! @R.TV.ON@ !Flag - positive inquiry for intransitive gets TV siff
+!! @D.IV.ON@ !Flag - disallow test - delete string if unsaturated flag (
+!! @D.TV.ON@ !Flag - disalloq test - delete string if unsaturated flag (=Verb was not transitive)
+
+
+!************************************
+!Derivational morphemes and clitics *
+!************************************
+
+
+
+! This file gives the start and end of the Inuktitut lexicon. 
+! The lexicon Root points at the different parts of speech.
+! Each POS has its own file noun-iku-lex.txt, etc., which in
+! turn points to noun-iku-morph.txt, etc.
+! POS-changing nominalizers are found in verb-iku-morph.txt and verbalizers in noun-iku-morph.txt
+! It might be a good idea to have noun-iku-der.txt etc. as well.
+! The common, final lexica, are found in this file.
+
+
+LEXICON Root
+	Nouns ;
+	prop ;
+	pron ;
+	Verbs ;
+	Abbreviations ;
+!About lexica and continuations. Instead of separate lexica for words that can only be sing or only plur and others for words that can take all numbers, this is a better solution: Normal nouns are tagged tp, tup etc. whereas specials are tagged with the continuation lexicon
+
+
+!LEXICON part
+!+Part:%>	clit ;
+
+!LEXICON clit_sing
+!+UNA:%>una	clit ;
+!	        clit ;
+
+LEXICON clit
++GUUQ:%>guuq f ;
++LU:%>lu     f ;
+             f ;
+
+LEXICON f
+! xfst version
+! < "@D.[IT]V.ON@" >  # ; ! Deletes unwanted iv/tv combinations
+! foma version
+!   < @D.[IT]V.ON@ >  # ; 
+
+ # ;
+! < "@D.[IT]V.ON@" >  # ; ! this is the Iñupiaq flag diacritics solution
+
+

@@ -1,0 +1,7 @@
+LEXICON prop ! Dummy lexicon
+Mary nametag ;
+Annie nametag ;
+Nicholas nametag ;
+
+LEXICON nametag
++N+Prop: # ;
